@@ -58,7 +58,7 @@ function getVisits (callback) {
       return;
     }
 
-    callback(null, results.map((visit) => `Name: ${visit.Name}, BRate: ${visit.BRate}`));
+    callback(null, results.map((visit) => `Name: ${visit.Name}, BRate: ${visit.BRate}, BComment: ${visit.BComment}, CRate: ${visit.CRate}, CComment: ${visit.CComment}`));
   });
 }
 // [END getVisits]
@@ -87,7 +87,7 @@ app.get('/', (req, res, next) => {
       res
         .status(200)
         .set('Content-Type', 'text/plain')
-        .send(`Last 10 visits:\n${visits.join('\n')}`);
+        .send(`KRA_Description Table:\n${visits.join('\n')}`);
     });
   });
 //});
