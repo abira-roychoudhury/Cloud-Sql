@@ -90,7 +90,7 @@ app.get('/', (req, res, next) => {
         .send(`Last 10 visits:\n${visits.join('\n')}`);
     });
   });
-});
+//});
 
 // [START listen]
 const PORT = process.env.PORT || 8080;
