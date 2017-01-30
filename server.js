@@ -5,10 +5,11 @@
 const express = require('express');
 const mysql = require('mysql');
 const crypto = require('crypto');
-
 const app = express();
 app.enable('trust proxy');
 // [END setup]
+
+
 
 // [START connect]
 var config = {
@@ -16,14 +17,15 @@ var config = {
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE
 };
-
 if (process.env.INSTANCE_CONNECTION_NAME) {
   config.socketPath = `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`;
 }
-
 // Connect to the database
 const connection = mysql.createConnection(config);
 // [END connect]
+
+
+
 
 // [START insertVisit]
 /**
@@ -52,9 +54,8 @@ function updateKRA (kname, data, callback) {
         callback(err);
         return;
       }
-      read(id, cb);
+      callback();
     });
-  connection.end();
 }
 //[END updateKRA]
 
