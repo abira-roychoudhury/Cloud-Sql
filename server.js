@@ -46,7 +46,6 @@ function insertVisit (visit, callback) {
 
 //[START updateKRA]
 function updateKRA (kname, data, callback) {
-  const connection = getConnection();
   connection.query(
     'UPDATE `KRA_Description` SET ? WHERE `Name` = ?', [data, kname], (err) => {
       if (err) {
