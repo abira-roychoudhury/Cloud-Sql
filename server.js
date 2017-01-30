@@ -93,7 +93,7 @@ app.get('/', (req, res, next) => {
     CRate: 3,
     CComment:"good"
   };
-  kname="abira";
+  const kname="abira";
   updateKRA(kname,kraData, (err,results) => {
     if(err){
       next(err);
