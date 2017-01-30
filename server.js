@@ -94,12 +94,12 @@ app.get('/', (req, res, next) => {
     CComment:"good"
   };
   kname="abira";
-  updateKRA(kname,kraData,err,results) => {
+  updateKRA(kname,kraData, (err,results) => {
     if(err){
       next(err);
       return;
     }
-  }
+  });
 
 
   /*insertVisit(visit, (err, results) => {
