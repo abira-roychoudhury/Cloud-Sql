@@ -58,7 +58,7 @@ function getVisits (callback) {
       return;
     }
 
-    callback(null, results.map((visit) => `Time: ${visit.timestamp}, AddrHash: ${visit.userIp}`));
+    callback(null, results.map((visit) => `Name: ${visit.Name}, BRate: ${visit.BRate}`));
   });
 }
 // [END getVisits]
