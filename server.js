@@ -43,7 +43,30 @@ function insertVisit (visit, callback) {
 }*/
 // [END insertVisit]
 
-// [START getVisits]
+
+//[START updateKRA]
+function updateKRA (kname, data, callback) {
+  const connection = getConnection();
+  connection.query(
+    'UPDATE `KRA_Description` SET ? WHERE `Name` = ?', [data, kname], (err) => {
+      if (err) {
+        callback(err);
+        return;
+      }
+      read(id, cb);
+    });
+  connection.end();
+}
+//[END updateKRA]
+
+
+
+
+
+
+
+
+// [START getKRAs]
 const SQL_STRING = `SELECT * from KRA_Description;`;
 
 /**
@@ -51,7 +74,7 @@ const SQL_STRING = `SELECT * from KRA_Description;`;
  *
  * @param {function} callback The callback function.
  */
-function getVisits (callback) {
+function getKRAs (callback) {
   connection.query(SQL_STRING, (err, results) => {
     if (err) {
       callback(err);
@@ -61,15 +84,24 @@ function getVisits (callback) {
     callback(null, results.map((visit) => `Name: ${visit.Name}, BRate: ${visit.BRate}, BComment: ${visit.BComment}, CRate: ${visit.CRate}, CComment: ${visit.CComment}`));
   });
 }
-// [END getVisits]
+// [END getKRAs]
 
 app.get('/', (req, res, next) => {
-  // Create a visit record to be stored in the database
-  /*const visit = {
-    timestamp: new Date(),
-    // Store a hash of the visitor's ip address
-    userIp: crypto.createHash('sha256').update(req.ip).digest('hex').substr(0, 7)
-  };*/
+  // Create a KRA record to be stored in the database
+  const kraData = {
+    BRate: 3,
+    BComment:"good",
+    CRate: 3,
+    CComment:"good"
+  };
+  kname="abira";
+  updateKRA(kname,kraData,err,results) => {
+    if(err){
+      next(err);
+      return;
+    }
+  }
+
 
   /*insertVisit(visit, (err, results) => {
     if (err) {
@@ -78,7 +110,7 @@ app.get('/', (req, res, next) => {
     }*/
 
     // Query the last 10 visits from the database.
-    getVisits((err, visits) => {
+    getKRAs((err, visits) => {
       if (err) {
         next(err);
         return;
